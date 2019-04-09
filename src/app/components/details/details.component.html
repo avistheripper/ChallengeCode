@@ -24,4 +24,15 @@
       {{ post.description }}
     </p>
   </div>
+  <div class="row columns">
+    <ngx-monaco-editor class="my-code-editor" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+  </div>
+  <div class="row columns">
+    <ngx-monaco-diff-editor [options]="options" [originalModel]="originalModel" [modifiedModel]="modifiedModel"></ngx-monaco-diff-editor>
+  </div>
+  <div class="row columns">
+    <a routerLink="post" class="cta-btn btn-block">
+      Submit for testing!
+    </a>
+  </div>
 </div>
