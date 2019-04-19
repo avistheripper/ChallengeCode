@@ -6,15 +6,12 @@ import { Post } from '../config/posts';
 @Injectable({
   providedIn: 'root'
 })
-export class PostService {
+export class TaskService {
   constructor(private http: HttpClient) { }
-  public getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>('/api/posts');
+  public getTasks(): Observable<Post[]> {
+    return this.http.get<Post[]>('http://localhost:5000/api/v1/tasks?page=1');
   }
-  public getPost(id: number): Observable<Post> {
+  public getTask(id: number): Observable<Post> {
     return this.http.get<Post>(`/api/details/${id}`);
-  }
-  public createPost(post: Post): Observable<void> {
-    return this.http.post<void>('/api/posts', post);
   }
 }

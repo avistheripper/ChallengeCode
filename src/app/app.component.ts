@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from './services/post.service';
+import { TaskService } from './services/post.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,9 @@ import { PostService } from './services/post.service';
 })
 export class AppComponent implements OnInit {
   title;
-  constructor(private postService: PostService) {}
+  constructor(private taskService: TaskService) {}
   ngOnInit(): void {
-    this.postService.getPosts().subscribe((res) => {
+    this.taskService.getTasks().subscribe((res) => {
       this.title = res;
     });
   }

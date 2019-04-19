@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { PostService } from 'src/app/services/post.service';
+import { TaskService } from 'src/app/services/post.service';
 import { Post } from 'src/app/config/posts';
 
 @Component({
@@ -14,7 +14,7 @@ export class PostFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private restService: PostService,
+    private restService: TaskService,
     ) {}
 
   public ngOnInit(): void {
@@ -35,11 +35,11 @@ export class PostFormComponent implements OnInit {
     });
   }
 
-  public onSave(post: Post): void {
+  public onSave(task: Post): void {
     console.log('Saving...');
-    this.restService.createPost(post)
-      .subscribe(() => console.log('Post added!')
-      );
+    // this.restService.createTask(task)
+    //   .subscribe(() => console.log('Post added!')
+    //   );
   }
 
   public onCancel(): void {
