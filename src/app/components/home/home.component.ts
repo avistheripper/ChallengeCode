@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../../services/post.service';
+import { TaskService } from '../../services/task.service';
 import { Post } from 'src/app/config/posts';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DiffEditorModel } from 'ngx-monaco-editor';
 
-import { TaskService } from 'src/app/services/post.service';
+import { TaskService } from 'src/app/services/task.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/config/posts';
 

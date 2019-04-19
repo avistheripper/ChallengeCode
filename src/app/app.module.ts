@@ -6,12 +6,12 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TaskService } from './services/post.service';
+import { TaskService } from './services/task.service';
 import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
 import { DetailsComponent } from './components/details/details.component';
-import { PostComponent } from './components/post/post.component';
-import { PostFormComponent } from './components/post-form/post-form.component';
+import { TaskComponent } from './components/task/task.component';
+import { PostFormComponent } from './components/task-form/task-form.component';
 import { HttpConfigInterceptor } from './inerceptor/auth.interceptor';
 
 @NgModule({
@@ -20,7 +20,7 @@ import { HttpConfigInterceptor } from './inerceptor/auth.interceptor';
     NavComponent,
     HomeComponent,
     DetailsComponent,
-    PostComponent,
+    TaskComponent,
     PostFormComponent
   ],
   imports: [

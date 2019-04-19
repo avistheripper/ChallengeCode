@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
+  templateUrl: './task.component.html',
+  styleUrls: ['./task.component.scss']
 })
-export class PostComponent implements OnInit {
+export class TaskComponent implements OnInit {
 
   constructor() { }
 

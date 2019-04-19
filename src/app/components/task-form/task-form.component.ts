@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { TaskService } from 'src/app/services/post.service';
+import { TaskService } from 'src/app/services/task.service';
 import { Post } from 'src/app/config/posts';
 
 @Component({
-  selector: 'app-post-form',
-  templateUrl: './post-form.component.html',
-  styleUrls: ['./post-form.component.scss']
+  selector: 'app-task-form',
+  templateUrl: './task-form.component.html',
+  styleUrls: ['./task-form.component.scss']
 })
 export class PostFormComponent implements OnInit {
   public post: Post;
