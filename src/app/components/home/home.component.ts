@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from '../../services/post.service';
+import { TaskService } from '../../services/post.service';
 import { Post } from 'src/app/config/posts';
 
 @Component({
@@ -9,10 +9,12 @@ import { Post } from 'src/app/config/posts';
 })
 export class HomeComponent implements OnInit {
   public posts: Array<Post>;
-  constructor(private postService: PostService) {}
+  constructor(private taskService: TaskService) {}
   public ngOnInit(): void {
-    this.postService.getPosts().subscribe((res) => {
-      this.posts = res;
+    localStorage.setItem(
+      'token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZGV2LXVzZXIifQ.lddHi-4Qn3Bipusgbe8qsihWsePbgRTstn_5RnuZfE8');
+    this.taskService.getTasks().subscribe((res) => {
+      console.log(res);
     });
   }
 

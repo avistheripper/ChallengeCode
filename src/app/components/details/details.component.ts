@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DiffEditorModel } from 'ngx-monaco-editor';
 
-import { PostService } from 'src/app/services/post.service';
+import { TaskService } from 'src/app/services/post.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/config/posts';
 
@@ -17,14 +17,14 @@ export class DetailsComponent implements OnInit {
   public code = 'function x() {\nconsole.log("Hello world!");\n}';
 
   constructor(
-    private postService: PostService,
+    private taskService: TaskService,
     private route: ActivatedRoute) {
     }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
       const id = params['id'];
-      this.postService.getPost(id)
+      this.taskService.getTask(id)
         .subscribe(res => this.task = res);
     });
   }
