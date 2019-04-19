@@ -11,19 +11,10 @@ import { Post } from 'src/app/config/posts';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
-  public post: Post;
-  public postId: string;
-  public editorOptions = {theme: 'vs-light', language: 'javascript', fontSize: '20px'};
+  public task: Post;
+  public taskId: string;
+  public editorOptions = {theme: 'vs-dark', language: 'javascript', fontSize: '20px'};
   public code = 'function x() {\nconsole.log("Hello world!");\n}';
-  originalModel: DiffEditorModel = {
-    code: 'heLLo world!',
-    language: 'text/plain'
-  };
-
-  modifiedModel: DiffEditorModel = {
-    code: 'hello orlando!',
-    language: 'text/plain'
-  };
 
   constructor(
     private postService: PostService,
@@ -34,8 +25,12 @@ export class DetailsComponent implements OnInit {
     this.route.params.subscribe((params) => {
       const id = params['id'];
       this.postService.getPost(id)
-        .subscribe(res => this.post = res);
+        .subscribe(res => this.task = res);
     });
+  }
+
+  public onSubmit(): void {
+    console.log(this.code);
   }
 
 }

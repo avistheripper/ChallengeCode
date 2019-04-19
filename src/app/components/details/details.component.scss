@@ -1,16 +1,35 @@
+
+
 p {
     font-size: 1.5em;
 }
 
+h4 {
+  text-align: center;
+  color: #fff;
+  width: 50%;
+  border-bottom: 1px solid #00E4AC;
+
+}
+
 a#back {
-    background: url('/assets/images/back.svg') center no-repeat;
-    width: 67px;
+  font-size: 35px;
+    margin-top: 18px;
+    line-height: 80px;
+    background-color: transparent;
+    width: 80px;
     display: block;
-    color: #2A3136;
+    color: #00E4AC;
+    text-align: center;
+    border: 1px solid #00E4AC;
+    border-radius: 50%;
     font-weight: bold;
     text-transform: uppercase;
-    text-indent: 16px;
     margin-bottom: 5px;
+    &:hover {
+      color: #2A3136;
+      background-color: #00E4AC;
+    }
 }
 
 .my-code-editor {
