@@ -12,6 +12,6 @@ export class TaskService {
     return this.http.get<Post[]>('http://localhost:5000/api/v1/tasks?page=1');
   }
   public getTask(id: number): Observable<Post> {
-    return this.http.get<Post>(`/api/details/${id}`);
+    return this.http.get<Post>(`http://localhost:5000/api/v1/tasks/${id}`);
   }
 }

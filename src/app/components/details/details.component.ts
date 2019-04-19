@@ -11,21 +11,24 @@ import { Post } from 'src/app/config/posts';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
-  public task: Post;
+  public task: any;
   public taskId: string;
   public editorOptions = {theme: 'vs-dark', language: 'javascript', fontSize: '20px'};
-  public code = 'function x() {\nconsole.log("Hello world!");\n}';
+  public code: string;
 
   constructor(
     private taskService: TaskService,
-    private route: ActivatedRoute) {
-    }
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
       const id = params['id'];
       this.taskService.getTask(id)
-        .subscribe(res => this.task = res);
+        .subscribe(res => {
+          this.task = res;
+          this.code = this.task.code;
+        });
     });
   }
 
