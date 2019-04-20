@@ -1,0 +1,28 @@
+.login-container {
+    border: 1px solid #00E4AC;
+    color: #00E4AC;
+    margin-left: 25%;
+    border-radius: 20px;
+    padding: 18px 24px;
+    width: 50%;
+
+    .login-btn {
+        background-color: transparent;
+        margin-left: 30%;
+        width: 180px;
+        display: block;
+        border-radius: 12px;
+        color: #00E4AC;
+        text-align: center;
+        border: 1px solid #00E4AC;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        &:hover {
+            color: #2A3136;
+            background-color: #00E4AC;
+        }
+    }
+    label {
+        color: #00E4AC;
+    }
+}

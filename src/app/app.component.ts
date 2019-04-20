@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from './services/task.service';
+import { LoginService } from './services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +8,15 @@ import { TaskService } from './services/task.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title;
-  constructor(private taskService: TaskService) {}
+  public isAuth: boolean;
+  constructor(
+    private loginService: LoginService,
+    private router: Router
+    ) {}
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe((res) => {
-      this.title = res;
-    });
+    this.loginService.getUserStatus().subscribe(res => this.isAuth = res);
+    if (!this.isAuth) {
+      this.router.navigate(['/login']);
+    }
   }
 }

@@ -1,0 +1,19 @@
+<div class="login-container">
+  <h2>Login</h2>
+<form  [formGroup]="loginForm" novalidate>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Pick username!</label>
+    <input
+      type="email"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      placeholder="Enter Username"
+      formControlName="username"
+      >
+  </div>
+  <button class="login-btn" (click)="onLogin()" [disabled]="loginForm.pristine || loginForm.invalid">
+    Submit
+  </button>
+</form>
+</div>
