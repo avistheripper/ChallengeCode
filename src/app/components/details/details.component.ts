@@ -13,7 +13,12 @@ import { Task } from 'src/app/config/task';
 export class DetailsComponent implements OnInit {
   public task: Task;
   public taskId: string;
-  public editorOptions = {theme: 'vs-dark', language: 'javascript', fontSize: '20px'};
+  public editorOptions = {
+    theme: 'vs-dark',
+    language: 'javascript',
+    fontSize: '20px',
+    height: '300px'
+  };
   public code: string;
 
   constructor(

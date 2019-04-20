@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="columns small-12 medium-6 large-4 posts" *ngFor="let task of tasks">
-    <div class="post-container">
+  <div class="columns small-12 medium-6 large-4 tasks" *ngFor="let task of tasks">
+    <div class="task-container">
       <div class="row">
         <div class="coulmns small-12 large-10">
-          <a routerLink="/details/{{ task.id }}" class="post-title">{{ task.name }}</a>
+          <a routerLink="/details/{{ task.id }}" class="task-title">{{ task.name }}</a>
         </div>
         <div class="coulmns small-12 large-2 show-for-large">
           <a href="#" target="_blank" class="external">
@@ -22,6 +22,7 @@
       </div>
       <p>{{ task.shortDescription }}</p>
       <a routerLink="/details/{{ task.id }}" class="cta-btn btn2">Get started</a>
+      <span class="level-badge">Complexity: {{ task.difficulty | uppercase }}</span>
     </div>
   </div>
 </div>

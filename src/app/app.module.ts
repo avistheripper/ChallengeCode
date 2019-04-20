@@ -10,8 +10,6 @@ import { TaskService } from './services/task.service';
 import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
 import { DetailsComponent } from './components/details/details.component';
-import { TaskComponent } from './components/task/task.component';
-import { PostFormComponent } from './components/task-form/task-form.component';
 import { HttpConfigInterceptor } from './inerceptor/auth.interceptor';
 
 @NgModule({
@@ -19,9 +17,7 @@ import { HttpConfigInterceptor } from './inerceptor/auth.interceptor';
     AppComponent,
     NavComponent,
     HomeComponent,
-    DetailsComponent,
-    TaskComponent,
-    PostFormComponent
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

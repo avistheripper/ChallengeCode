@@ -1,6 +1,7 @@
-.post-container {
+.task-container {
     background-color: #363E45;
     padding: 24px;
+    border-radius: 20px;
     margin-bottom: 30px;
     height: 100%;
     position: relative;
@@ -9,13 +10,19 @@
     }
 }
 
-.post-title {
+.level-badge {
+    position: absolute;
+    right: 10%;
+    font-weight: bold;
+}
+
+.task-title {
     font-size: 1.4em;
     display: block;
     padding: 0 20px;
 }
 
-.posts {
+.tasks {
     margin-bottom: 30px;
 }
 
