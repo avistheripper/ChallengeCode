@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
-import { Post } from 'src/app/config/posts';
+import { Task } from 'src/app/config/task';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import { Post } from 'src/app/config/posts';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public tasks: Array<Post>;
+  public tasks: Array<Task>;
   constructor(private taskService: TaskService) {}
   public ngOnInit(): void {
     localStorage.setItem(

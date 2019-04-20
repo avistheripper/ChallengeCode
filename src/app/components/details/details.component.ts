@@ -3,7 +3,7 @@ import { DiffEditorModel } from 'ngx-monaco-editor';
 
 import { TaskService } from 'src/app/services/task.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Post } from 'src/app/config/posts';
+import { Task } from 'src/app/config/task';
 
 @Component({
   selector: 'app-details',
@@ -11,7 +11,7 @@ import { Post } from 'src/app/config/posts';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
-  public task: any;
+  public task: Task;
   public taskId: string;
   public editorOptions = {theme: 'vs-dark', language: 'javascript', fontSize: '20px'};
   public code: string;
