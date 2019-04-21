@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DiffEditorModel } from 'ngx-monaco-editor';
+import { ActivatedRoute } from '@angular/router';
 
 import { TaskService } from 'src/app/services/task.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Task } from 'src/app/config/task';
 
 @Component({
@@ -40,5 +39,4 @@ export class DetailsComponent implements OnInit {
   public onSubmit(): void {
     console.log(this.code);
   }
-
 }

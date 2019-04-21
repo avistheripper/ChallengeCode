@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  public isAuth: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isAuthenticated());
-
+  public isAuth: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(this.isAuthenticated());
   constructor() { }
 
-  public userLogin(user): void {
+  public userLogin(user: string): void {
       localStorage.setItem('username', user);
       this.isAuth.next(true);
   }
