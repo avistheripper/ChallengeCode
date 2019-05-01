@@ -14,6 +14,7 @@ import { HttpConfigInterceptor } from './inerceptor/auth.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './services/login.service';
 import { AuthGuard } from './guards/auth.guard';
+import { StatsComponent } from './components/stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AuthGuard } from './guards/auth.guard';
     NavComponent,
     HomeComponent,
     DetailsComponent,
-    LoginComponent
+    LoginComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
