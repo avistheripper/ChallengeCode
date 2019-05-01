@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class StatsComponent implements OnInit {
   public $taskStats: Observable<Stat[]>;
+  public user: string;
 
   constructor(private taskService: TaskService) { }
 
@@ -19,6 +20,7 @@ export class StatsComponent implements OnInit {
       .pipe(
         map(stat => stat)
       );
+    this.user = localStorage.getItem('username');
   }
 
 }
