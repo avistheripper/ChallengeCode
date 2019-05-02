@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { TaskService } from 'src/app/services/task.service';
 import { Task } from 'src/app/config/task';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit, OnDestroy {
+  public routeSub: Subscription;
   public task: Task;
   public taskId: string;
   public editorOptions = {
@@ -25,8 +27,8 @@ export class DetailsComponent implements OnInit {
     private route: ActivatedRoute
     ) { }
 
-  ngOnInit() {
-    this.route.params.subscribe((params) => {
+  public ngOnInit() {
+    this.routeSub = this.route.params.subscribe((params) => {
       const id = params['id'];
       this.taskService.getTask(id)
         .subscribe(res => {
@@ -34,6 +36,10 @@ export class DetailsComponent implements OnInit {
           this.code = this.task.code;
         });
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.routeSub.unsubscribe();
   }
 
   public onSubmit(): void {
