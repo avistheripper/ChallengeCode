@@ -20,7 +20,10 @@ export class StatsComponent implements OnInit {
       .pipe(
         map(stat => stat)
       );
-    this.user = localStorage.getItem('username');
+      const userName = localStorage.getItem('username');
+      if (userName) {
+        this.user = userName;
+      }
   }
 
 }
