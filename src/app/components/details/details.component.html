@@ -1,11 +1,11 @@
-<div *ngIf="task" class="body-blur">
-    <h4>{{ task.name  }}</h4>
+<div *ngIf="task" class="body-blur task-details">
+    <h4 class="task-details__title">{{ task.name  }}</h4>
     <div class="loader" *ngIf="loading">
       <h3>Running tests...</h3>
     </div>
   <div class="row">
     <div class="columns small-1 medium-1">
-      <a routerLink="/" id="back">&lsaquo;</a>
+      <a routerLink="/" id="back">Back</a>
     </div>
     <div class="columns small-11 medium-11 description">
       <p>
@@ -14,7 +14,12 @@
     </div>
   </div>
   <div class="row columns">
-    <ngx-monaco-editor *ngIf="!testFinished" class="my-code-editor" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+    <ngx-monaco-editor
+      *ngIf="!testFinished"
+      class="my-code-editor"
+      [options]="editorOptions"
+      [(ngModel)]="code"
+    ></ngx-monaco-editor>
 
     <div class="jumbotron results-window"
          *ngIf="testFinished && testResult === 'success'">
@@ -28,7 +33,7 @@
     </div>
 
     <div class="jumbotron results-window--fail"
-         *ngIf="testFinished && (testResult === 'error' || testResult === 'terminated')">
+         *ngIf="testFinished && testResult === 'syntax' || testResult === 'failure'">
       <h1 class="display-4">Oops! There might be a mistake in your code</h1>
       <p class="lead">Make sure sure you're doing it right!</p>
       <hr class="my-4">
@@ -40,7 +45,11 @@
 
   </div>
   <div class="row columns" *ngIf="!testFinished">
-    <button (click)="onSubmit()" class="cta-btn btn-block">
+    <button
+      (click)="onSubmit()"
+      class="cta-btn btn-block"
+      [disabled]="loading"
+      >
       Submit for testing!
     </button>
   </div>

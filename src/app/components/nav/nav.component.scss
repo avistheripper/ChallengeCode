@@ -7,6 +7,10 @@
     font-size: 20px;
     text-transform: uppercase;
     color: aliceblue;
+    &:hover {
+        color: #00E4AC;
+        text-decoration: none;
+    }
 }
 
 .logout {
