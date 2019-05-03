@@ -17,3 +17,14 @@ export interface  Task {
     enabled: boolean;
     timestamps: string;
 }
+
+export interface TaskStatus {
+    sid: string;
+    tests: [
+        {
+            input: string;
+            output: string;
+            status: string;
+        }
+    ];
+}

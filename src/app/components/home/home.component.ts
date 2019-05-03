@@ -14,9 +14,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private taskService: TaskService) {}
 
   public ngOnInit(): void {
-    // localStorage.setItem(
-    //   'token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZGV2LXVzZXIifQ.lddHi-4Qn3Bipusgbe8qsihWsePbgRTstn_5RnuZfE8'
-    // );
+    localStorage.setItem(
+      'token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZGV2LXVzZXIifQ.P4Yfr-EQD-5N-bp6o0gBJbhApTt6w7BJdET8yQeuSqw'
+    );
     this.taskSubscription = this.taskService.getTasks().subscribe((res) => {
       this.tasks = res;
     });

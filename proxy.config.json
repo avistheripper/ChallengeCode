@@ -1,6 +1,6 @@
 {
     "/api": {
-        "target": "localhost:5000/api/v1",
+        "target": "https://services.js-tasks.ru",
         "secure": false,
         "logLevel": "debug",
         "changeOrigin": true

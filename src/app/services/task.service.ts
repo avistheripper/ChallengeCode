@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Task } from '../config/task';
+import { Task, TaskStatus } from '../config/task';
 import { Stat } from '../config/stat';
+
+const apiEndPoint = 'api/v1';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +12,10 @@ import { Stat } from '../config/stat';
 export class TaskService {
   constructor(private http: HttpClient) { }
   public getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>('http://localhost:5000/api/v1/tasks?page=1');
+    return this.http.get<Task[]>(`${apiEndPoint}/tasks?page=1`);
   }
   public getTask(id: number): Observable<Task> {
-    return this.http.get<Task>(`http://localhost:5000/api/v1/tasks/${id}`);
+    return this.http.get<Task>(`${apiEndPoint}/tasks/${id}`);
   }
   public getStats(): Observable<Stat[]> {
     // return this.http.get<Stat>(`http://localhost:5000/api/v1/stats/rankings`);
@@ -31,5 +33,12 @@ export class TaskService {
       score: 1
     }
   ]);
+  }
+  public submitTask(id: number, code: string): Observable<TaskStatus> {
+    return this.http.post<TaskStatus>(`${apiEndPoint}/tasks/${id}/submit`, { code });
+  }
+
+  public getSolutionStatus(id: number, sid: string): Observable<TaskStatus> {
+    return this.http.get<TaskStatus>(`${apiEndPoint}/tasks/${id}/status/${sid}`);
   }
 }
