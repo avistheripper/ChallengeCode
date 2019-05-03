@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Task, TaskStatus } from '../config/task';
+import { Task, TaskStatus, SolutionStatus } from '../config/task';
 import { Stat } from '../config/stat';
 
 const apiEndPoint = 'api/v1';
@@ -38,7 +38,7 @@ export class TaskService {
     return this.http.post<TaskStatus>(`${apiEndPoint}/tasks/${id}/submit`, { code });
   }
 
-  public getSolutionStatus(id: number, sid: string): Observable<TaskStatus> {
-    return this.http.get<TaskStatus>(`${apiEndPoint}/tasks/${id}/status/${sid}`);
+  public getSolutionStatus(id: number, sid: string): Observable<SolutionStatus> {
+    return this.http.get<SolutionStatus>(`${apiEndPoint}/tasks/${id}/status/${sid}`);
   }
 }

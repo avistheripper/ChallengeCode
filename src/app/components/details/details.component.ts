@@ -3,7 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 
 import { TaskService } from 'src/app/services/task.service';
 import { Task } from 'src/app/config/task';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
+import { delay, map, switchAll, repeat } from 'rxjs/operators';
+import { editorConfig } from 'src/app/config/editor-config';
 
 @Component({
   selector: 'app-details',
@@ -14,12 +16,12 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public routeSub: Subscription;
   public task: Task;
   public taskId: number;
-  public editorOptions = {
-    theme: 'vs-dark',
-    language: 'javascript',
-    fontSize: '20px',
-    height: '300px'
-  };
+  public testFinished = false;
+  public testResult: string;
+  public loading: boolean;
+  public testId: string;
+  public editorOptions = editorConfig;
+  public solution$: Subject<string> = new Subject<string>();
   public code: string;
 
   constructor(
@@ -36,15 +38,54 @@ export class DetailsComponent implements OnInit, OnDestroy {
           this.code = this.task.code;
         });
     });
-  }
-
-  public ngOnDestroy(): void {
-    this.routeSub.unsubscribe();
+    this.initPolling();
   }
 
   public onSubmit(): void {
     this.taskService.submitTask(this.taskId, this.code)
-      .subscribe(res => this.taskService.getSolutionStatus(this.taskId, res.sid)
-        .subscribe(status => console.log(status)));
+      .subscribe(res => {
+        this.testId = res.sid;
+        this.solution$.next(this.code);
+        this.loading = true;
+      }
+        );
+  }
+
+  public initPolling(): void {
+    this.solution$.pipe(
+      delay(3000),
+      map((query: string) => this.taskService.getSolutionStatus(this.taskId, this.testId)),
+      repeat(3),
+      switchAll(),
+    )
+        .subscribe(res => {
+          switch (res.status) {
+            case 'tested':
+              this.testFinished = true;
+              this.loading = false;
+              this.testResult = 'success';
+              break;
+            case 'terminated':
+              this.testFinished = true;
+              this.loading = false;
+              this.testResult = 'failure';
+              break;
+            case 'error':
+              this.testFinished = true;
+              this.loading = false;
+              this.testResult = 'syntax';
+              break;
+            default:
+            this.solution$.next(this.code);
+          }
+        });
+  }
+
+  public refreshTask(): void {
+    this.testFinished = false;
+  }
+
+  public ngOnDestroy(): void {
+    this.routeSub.unsubscribe();
   }
 }

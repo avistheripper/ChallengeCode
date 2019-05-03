@@ -28,3 +28,15 @@ export interface TaskStatus {
         }
     ];
 }
+
+export interface SolutionStatus {
+    code: string;
+    id: string;
+    results: Array<any>;
+    score: number;
+    status: string;
+    task: string;
+    type: string;
+    user: string;
+    visible: boolean;
+}

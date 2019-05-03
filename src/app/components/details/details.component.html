@@ -1,5 +1,8 @@
 <div *ngIf="task" class="body-blur">
     <h4>{{ task.name  }}</h4>
+    <div class="loader" *ngIf="loading">
+      <h3>Running tests...</h3>
+    </div>
   <div class="row">
     <div class="columns small-1 medium-1">
       <a routerLink="/" id="back">&lsaquo;</a>
@@ -11,9 +14,32 @@
     </div>
   </div>
   <div class="row columns">
-    <ngx-monaco-editor class="my-code-editor" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+    <ngx-monaco-editor *ngIf="!testFinished" class="my-code-editor" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+
+    <div class="jumbotron results-window"
+         *ngIf="testFinished && testResult === 'success'">
+      <h1 class="display-4">Good job!</h1>
+      <p class="lead">All the tests for this task has succesfullty been passed!</p>
+      <hr class="my-4">
+      <p>Keep on moving!</p>
+      <p class="lead">
+        <button class="cta-btn btn-lg btn-left" routerLink="/" role="button">Back to task list</button>
+      </p>
+    </div>
+
+    <div class="jumbotron results-window--fail"
+         *ngIf="testFinished && (testResult === 'error' || testResult === 'terminated')">
+      <h1 class="display-4">Oops! There might be a mistake in your code</h1>
+      <p class="lead">Make sure sure you're doing it right!</p>
+      <hr class="my-4">
+      <p>Try it again</p>
+      <p class="lead">
+        <button class="cta-btn btn-lg btn-left" (click)="refreshTask()" role="button">One more time</button>
+      </p>
+    </div>
+
   </div>
-  <div class="row columns">
+  <div class="row columns" *ngIf="!testFinished">
     <button (click)="onSubmit()" class="cta-btn btn-block">
       Submit for testing!
     </button>
