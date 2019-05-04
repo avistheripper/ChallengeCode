@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Task, TaskStatus, SolutionStatus } from '../config/task';
 import { Stat } from '../config/stat';
 
-const apiEndPoint = 'api/v1';
+const apiEndPoint = 'https://services.js-tasks.ru/api/v1';
 
 @Injectable({
   providedIn: 'root'
