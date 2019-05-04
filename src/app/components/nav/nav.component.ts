@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -8,9 +9,13 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class NavComponent {
 
-  constructor(private loginService: LoginService) { }
+  constructor(
+    private loginService: LoginService,
+    private router: Router
+    ) { }
   onLogout(): void {
     this.loginService.userLogout();
+    this.router.navigate(['/login']);
   }
 
 }
