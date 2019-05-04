@@ -1,6 +1,18 @@
-.stat-title {
-    padding: 12px 24px 12px 24px;
-}
-.stat-score {
-    float: right;
+.stat {
+    &__title {
+        padding: 12px 24px 12px 24px;
+    }
+    &__score {
+        float: right;
+    }
+    &__code {
+        background: #2A3136;
+        color: aliceblue;
+        padding: 6px;
+        font-weight: bold;
+    }
+    &__test-results {
+        list-style-type: none;
+
+    }
 }

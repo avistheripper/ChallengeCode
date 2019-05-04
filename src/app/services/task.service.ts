@@ -18,21 +18,21 @@ export class TaskService {
     return this.http.get<Task>(`${apiEndPoint}/tasks/${id}`);
   }
   public getStats(): Observable<Stat[]> {
-    // return this.http.get<Stat>(`http://localhost:5000/api/v1/stats/rankings`);
-    return of([
-    {
-      date: '25-09-2019',
-      time: 1231232,
-      task: 'Love triangle',
-      score: 5
-    },
-    {
-      date: '25-09-2019',
-      time: 22333,
-      task: 'Temperature switch',
-      score: 1
-    }
-  ]);
+     return this.http.get<Stat[]>(`${apiEndPoint}/stats/rankings`);
+  //   return of([
+  //   {
+  //     date: '25-09-2019',
+  //     time: 1231232,
+  //     task: 'Love triangle',
+  //     score: 5
+  //   },
+  //   {
+  //     date: '25-09-2019',
+  //     time: 22333,
+  //     task: 'Temperature switch',
+  //     score: 1
+  //   }
+  // ]);
   }
   public submitTask(id: number, code: string): Observable<TaskStatus> {
     return this.http.post<TaskStatus>(`${apiEndPoint}/tasks/${id}/submit`, { code });
