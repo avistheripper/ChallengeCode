@@ -8,3 +8,14 @@ To get started with complete BE:
  - npm i
  - npm start
 
+To be added:
+  - Remove "Code to exec" form leaderboard
+  - OAth flow
+  - IDE validation (e.g submit button is disabled until code changes)
+  - user icon to navbar
+  - stat page to be redisigned
+  - fix the logic of displaying the result card for the separate task
+  - stylings (text-decoration when onhover "Get started")
+  - arrow icon role switch
+  - loader when IDE is proccessed
+
