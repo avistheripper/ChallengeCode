@@ -17,7 +17,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public task: Task;
   public taskId: number;
   public testFinished = false;
-  public testResult: string;
+  public testResult: string | null;
   public loading: boolean;
   public testId: string;
   public editorOptions = editorConfig;
@@ -61,9 +61,13 @@ export class DetailsComponent implements OnInit, OnDestroy {
         .subscribe(res => {
           switch (res.status) {
             case 'tested':
+            res.results.forEach(({status}) => {
+              status === 'failed'
+                ? this.testResult = 'failure'
+                : this.testResult = 'success';
+            });
               this.testFinished = true;
               this.loading = false;
-              this.testResult = 'success';
               break;
             case 'terminated':
               this.testFinished = true;
@@ -83,6 +87,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   public refreshTask(): void {
     this.testFinished = false;
+    this.testResult = null;
   }
 
   public ngOnDestroy(): void {

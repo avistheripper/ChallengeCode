@@ -48,7 +48,7 @@
     <button
       (click)="onSubmit()"
       class="cta-btn btn-block"
-      [disabled]="loading"
+      [disabled]="loading || task.code === code"
       >
       Submit for testing!
     </button>
