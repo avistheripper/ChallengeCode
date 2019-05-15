@@ -1,0 +1,47 @@
+<form [formGroup]="taskForm" novalidate>
+    <div class="form-group">
+      <label for="taskName">Task name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="taskName"
+        placeholder="Task name"
+        formControlName="name"
+      >
+    </div>
+    <div class="form-group">
+        <label for="shortDesc">Short description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="shortDesc"
+          placeholder="Short description"
+          formControlName="shortDescription"
+        >
+    </div>
+    <div class="form-group">
+        <label for="fullDesc">Full description</label>
+        <textarea
+          class="form-control"
+          id="fullDesc"
+          rows="4"
+          formControlName="taskDescription"
+        ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="diff">Complexity</label>
+      <select formControlName="difficulty" class="form-control" id="diff">
+        <option>Trivial</option>
+        <option>Low</option>
+        <option>Middle</option>
+        <option>High</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="code">Code</label>
+      <textarea class="form-control" formControlName="code" id="code" rows="4"></textarea>
+    </div>
+    <button class="btn btn-primary btn-block" (click)="addTask()">
+      Add Task
+    </button>
+  </form>

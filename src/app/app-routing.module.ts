@@ -5,6 +5,7 @@ import { DetailsComponent } from './components/details/details.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { StatsComponent } from './components/stats/stats.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
   {
     path: 'stats',
     component: StatsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/epam',
+    component: AdminComponent,
     canActivate: [AuthGuard]
   }
 ];

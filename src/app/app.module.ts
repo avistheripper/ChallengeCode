@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './services/login.service';
 import { AuthGuard } from './guards/auth.guard';
 import { StatsComponent } from './components/stats/stats.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { StatsComponent } from './components/stats/stats.component';
     HomeComponent,
     DetailsComponent,
     LoginComponent,
-    StatsComponent
+    StatsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

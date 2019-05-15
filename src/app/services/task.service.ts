@@ -41,4 +41,7 @@ export class TaskService {
   public getSolutionStatus(id: number, sid: string): Observable<SolutionStatus> {
     return this.http.get<SolutionStatus>(`${apiEndPoint}/tasks/${id}/status/${sid}`);
   }
+  public createTask(task: any): Observable<any> {
+    return this.http.post<any>(`${apiEndPoint}/tasks`, task);
+  }
 }
