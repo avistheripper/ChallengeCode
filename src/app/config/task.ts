@@ -4,7 +4,10 @@ export interface  Task {
     topic: string;
     shortDescription: string;
     taskDescription: string;
-    difficulty: string;
+    difficulty: {
+        weight: number;
+        name: string;
+    };
     code: string;
     tests?: [
         {

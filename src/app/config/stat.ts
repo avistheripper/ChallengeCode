@@ -1,6 +1,6 @@
 export interface Stat {
-    date: string;
-    time: number;
-    task: string;
     score: number;
+    count: number;
+    _id: string;
+
 }
