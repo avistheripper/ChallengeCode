@@ -10,7 +10,8 @@
       aria-describedby="emailHelp"
       placeholder="Enter Username"
       formControlName="username"
-      >
+    >
+      <div class="alert alert-danger" *ngIf="error">{{ error }}</div>
   </div>
   <button class="login-btn" (click)="onLogin()" [disabled]="loginForm.pristine || loginForm.invalid">
     Submit

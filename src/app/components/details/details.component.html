@@ -11,6 +11,9 @@
       <p>
         {{ task.taskDescription }}
       </p>
+      <p *ngIf="task.source">
+        The task was taken from <a href="{{ task.source.url }}">{{ task.source.url }}</a>
+      </p>
     </div>
   </div>
   <div class="row columns">

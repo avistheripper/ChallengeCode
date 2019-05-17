@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+
+import { apiEndPoint } from './task.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,20 +11,35 @@ import { Observable, BehaviorSubject } from 'rxjs';
 export class LoginService {
   public isAuth: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(this.isAuthenticated());
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   public userLogin(user: string): void {
-      localStorage.setItem('username', user);
-      this.isAuth.next(true);
+      this.http.post(`${apiEndPoint}/users/register`, {name: user})
+        .pipe(
+          map((res: {token: string}) => {
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('username', user);
+          return of(true);
+        }),
+          catchError((err: HttpErrorResponse) => {
+            return of(false);
+        }))
+        .subscribe((result: Observable<boolean>) => {
+            if (result) {
+              this.isAuth.next(true);
+            } else {
+              this.isAuth.next(false);
+            }
+        });
   }
 
   public userLogout(): void {
-    localStorage.removeItem('username');
+    localStorage.removeItem('token');
     this.isAuth.next(false);
   }
 
   public isAuthenticated(): boolean {
-    return !!localStorage.getItem('username');
+    return !!localStorage.getItem('token');
   }
 
   public getUserStatus(): Observable<boolean> {

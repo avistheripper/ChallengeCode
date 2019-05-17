@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/login.service';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { LoginService } from 'src/app/services/login.service';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -9,12 +10,14 @@ import { TaskService } from 'src/app/services/task.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent {
-
+  public userName: string | null;
   constructor(
     private loginService: LoginService,
     private router: Router,
-    private taskService: TaskService
-    ) { }
+    private taskService: TaskService,
+    ) {
+      this.userName = localStorage.getItem('username');
+    }
   onLogout(): void {
     this.loginService.userLogout();
     this.router.navigate(['/login']);

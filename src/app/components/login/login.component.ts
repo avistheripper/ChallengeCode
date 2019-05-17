@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private loginService: LoginService;
   private router: Router;
   public loginForm: FormGroup;
+  public error: string | null;
   public username: string;
   public password: string;
   public authSubscription: Subscription;
@@ -25,6 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.fb = fb;
       this.loginService = loginService;
       this.router = router;
+      this.error = null;
     }
 
   public ngOnInit(): void {
@@ -35,8 +38,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public onLogin(): void {
     this.loginService.userLogin(this.loginForm.value.username);
-    this.router.navigate(['/']);
-
+    if (this.loginService.getUserStatus()) {
+      this.router.navigate(['/']);
+    } else {
+      this.error = 'Try another name!';
+    }
   }
 
   public ngOnDestroy(): void {

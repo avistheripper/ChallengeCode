@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from 'src/app/services/task.service';
-import { Stat } from 'src/app/config/stat';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+
+import { TaskService } from 'src/app/services/task.service';
+import { Stat } from 'src/app/config/stat';
 
 @Component({
   selector: 'app-stats',

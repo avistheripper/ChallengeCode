@@ -9,6 +9,10 @@ export interface  Task {
         name: string;
     };
     code: string;
+    source?: {
+        name: string;
+        url: string;
+    };
     tests?: [
         {
             input: string;
