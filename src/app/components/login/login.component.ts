@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private loginService: LoginService;
   private router: Router;
   public loginForm: FormGroup;
-  public error: string | null;
+  public error: string;
   public username: string;
   public password: string;
   public authSubscription: Subscription;
@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.fb = fb;
       this.loginService = loginService;
       this.router = router;
-      this.error = null;
     }
 
   public ngOnInit(): void {
@@ -38,11 +37,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public onLogin(): void {
     this.loginService.userLogin(this.loginForm.value.username);
-    if (this.loginService.getUserStatus()) {
-      this.router.navigate(['/']);
-    } else {
-      this.error = 'Try another name!';
-    }
+    this.loginService.getUserStatus()
+      .subscribe((res) => {
+        if (res) {
+          this.router.navigate(['/']);
+        } else {
+          this.error = 'Try another name!';
+        }
+      });
   }
 
   public ngOnDestroy(): void {

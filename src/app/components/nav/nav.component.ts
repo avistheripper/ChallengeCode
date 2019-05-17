@@ -1,23 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { LoginService } from 'src/app/services/login.service';
 import { TaskService } from 'src/app/services/task.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent {
-  public userName: string | null;
+export class NavComponent implements OnInit {
+  public userName$: Observable<string | null>;
   constructor(
     private loginService: LoginService,
     private router: Router,
     private taskService: TaskService,
     ) {
-      this.userName = localStorage.getItem('username');
+
     }
+  ngOnInit() {
+    this.userName$ = this.loginService.getUserName()
+    .pipe(map(res => res));
+  }
+
   onLogout(): void {
     this.loginService.userLogout();
     this.router.navigate(['/login']);

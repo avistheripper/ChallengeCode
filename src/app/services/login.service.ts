@@ -22,6 +22,8 @@ export class LoginService {
           return of(true);
         }),
           catchError((err: HttpErrorResponse) => {
+            console.log('error');
+            this.isAuth.next(false);
             return of(false);
         }))
         .subscribe((result: Observable<boolean>) => {
@@ -44,5 +46,9 @@ export class LoginService {
 
   public getUserStatus(): Observable<boolean> {
     return this.isAuth;
+  }
+
+  public getUserName(): Observable<string | null> {
+    return of(localStorage.getItem('username'));
   }
 }
