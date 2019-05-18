@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { LoginService } from 'src/app/services/login.service';
 import { TaskService } from 'src/app/services/task.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent implements OnInit {
-  public userName$: Observable<string | null>;
+export class NavComponent implements OnInit, OnDestroy {
+  public isAuthSub: Subscription;
+  public user;
   constructor(
     private loginService: LoginService,
     private router: Router,
@@ -21,8 +22,12 @@ export class NavComponent implements OnInit {
 
     }
   ngOnInit() {
-    this.userName$ = this.loginService.getUserName()
-    .pipe(map(res => res));
+    this.isAuthSub = this.loginService.isAuth
+      .subscribe((res: boolean) => {
+        res
+          ? this.user = localStorage.getItem('username')
+          : this.user = undefined;
+      });
   }
 
   onLogout(): void {
@@ -49,6 +54,10 @@ export class NavComponent implements OnInit {
       'enabled': true,
     'user': 'Igor'
     }).subscribe(res => console.log(res));
+  }
+
+  ngOnDestroy(): void {
+    this.isAuthSub.unsubscribe();
   }
 
 }

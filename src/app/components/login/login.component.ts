@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -36,15 +37,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   public onLogin(): void {
-    this.loginService.userLogin(this.loginForm.value.username);
-    this.loginService.getUserStatus()
-      .subscribe((res) => {
-        if (res) {
-          this.router.navigate(['/']);
-        } else {
-          this.error = 'Try another name!';
+    this.loginService.userLogin(this.loginForm.value.username)
+      .subscribe(
+        (res: {token: string}) => {
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('username', this.loginForm.value.username);
+            this.router.navigate(['/']);
+            this.loginService.isAuth.next(true);
+        },
+        (err: HttpErrorResponse) => {
+          this.error = 'Try another name';
         }
-      });
+      );
   }
 
   public ngOnDestroy(): void {

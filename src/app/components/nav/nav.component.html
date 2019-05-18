@@ -9,9 +9,9 @@
       Stats
     </a>
   </div>
-  <div class="columns small-12 medium-3">
+  <div class="columns small-12 medium-3" *ngIf="user">
       <p class="logo logout">
-        Welcome <span class="username">{{ userName$ | async }}</span>
+        Welcome <span class="username">{{ user }}</span>
       </p>
     </div>
      <!-- <div class="columns small-12 medium-1">
