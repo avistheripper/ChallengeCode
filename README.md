@@ -18,5 +18,5 @@ To be added:
   - fix the logic of displaying the result card for the separate task
   - stylings (text-decoration when onhover "Get started")
   - arrow icon role switch
-  - loader when IDE is proccessed
+  - loader when IDE is proccessed!
 
