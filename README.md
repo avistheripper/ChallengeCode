@@ -7,13 +7,11 @@ To get things up and running with local BE(actually needs to be re-worked):
 To get started with complete BE:
  - npm i
  - npm start
-
+https://github.com/nmmarkin/js-tasks - Back-end with sandbox
 To be added:
 
 SPREAD BRANCHES TO PROD and DEV
-Remove "Code to exec" form leaderboard
 OAth flow
-IDE validation (e.g submit button is disabled until code changes)
 user icon to navbar
 stat page to be redisigned
 fix the logic of displaying the result card for the separate task
